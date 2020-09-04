@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Plan} from '../../models/plan';
 import {FlashMessagesService} from 'angular2-flash-messages';
 
@@ -15,7 +15,8 @@ export class PlanListComponent implements OnInit {
   planPlaceName;
   planAdress;
 
-  constructor(private flashMessages: FlashMessagesService) { }
+  constructor(private flashMessages: FlashMessagesService) {
+  }
 
   ngOnInit(): void {
     this.planTitle = '';
@@ -54,8 +55,8 @@ export class PlanListComponent implements OnInit {
   }
 
   addPlan() {
-    if (this.planTitle.trim().length  && this.planDescription.trim().length
-      && this.planPlaceName.trim().length  && this.planAdress.trim().length === 0) {
+    if (this.planTitle === '' || this.planDescription === '' || this.planPlaceName === '' || this.planAdress === '') {
+      this.flashMessages.show('Please Add in all The Inputs', {cssClass: 'alert-danger'});
       return;
     }
 

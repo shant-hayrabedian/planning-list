@@ -65,9 +65,9 @@ font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
 
 button {
-  font-size: 14px;
-  background-color: white;
-  appearance: none;
+  font-size: 20px;
+  /*background-color: white;*/
+  /*appearance: none;*/
 
 /*&:hover {*/
 /*   background: lightgreen;*/
@@ -92,4 +92,7 @@ button {
 }
 .margining {
   margin-left: 15px;
+}
+.logo {
+  margin-left: 360px;
 }
