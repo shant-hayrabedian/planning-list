@@ -2,9 +2,9 @@ export interface Plan {
   id: number;
   title: string;
   description: string;
-  status: false;
+  status: true;
   date: Date;
   placeName: string;
-  adress: string;
+  address: string;
   editing: boolean;
 }

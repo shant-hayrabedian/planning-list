@@ -8,65 +8,49 @@ import {FlashMessagesService} from 'angular2-flash-messages';
   styleUrls: ['./plan-list.component.css']
 })
 export class PlanListComponent implements OnInit {
-  todos: Plan[];
+  plans: Plan[];
   planTitle;
   planDescription;
   planStatus;
   planPlaceName;
-  planAdress;
+  planAddress;
+  searchTerm: '';
 
   constructor(private flashMessages: FlashMessagesService) {
   }
 
   ngOnInit(): void {
     this.planTitle = '';
-    this.todos = [
+    this.planDescription = '';
+    this.planPlaceName = '';
+    this.planAddress = '';
+    this.plans = [
       {
         id: 1,
         title: 'Wine',
         description: 'The Best Wine In Yerevan',
-        status: false,
+        status: true,
         date: new Date(),
         placeName: 'Invino Cafe',
-        adress: 'Saryan Street',
+        address: 'Saryan Street',
         editing: false
       },
-      // {
-      //   id: 2,
-      //   title: 'Take over world',
-      //   description: 'Here is your description',
-      //   status: false,
-      //   date: new Date(),
-      //   placeName: 'Yerevan',
-      //   adress: 'Kentron',
-      //   editing: false
-      // },
-      // {
-      //   id: 3,
-      //   title: 'One more thing',
-      //   description: '',
-      //   status: false,
-      //   date: new Date(),
-      //   placeName: 'Yerevan',
-      //   adress: 'Kentron',
-      //   editing: false
-      // },
     ];
   }
 
   addPlan() {
-    if (this.planTitle === '' || this.planDescription === '' || this.planPlaceName === '' || this.planAdress === '') {
+    if (this.planTitle === '' || this.planDescription === '' || this.planPlaceName === '' || this.planAddress === '') {
       this.flashMessages.show('Please Add in all The Inputs', {cssClass: 'alert-danger'});
       return;
     }
 
-    this.todos.push({
+    this.plans.push({
       id: 2,
       title: this.planTitle,
       description: this.planDescription,
       status: this.planStatus,
       placeName: this.planPlaceName,
-      adress: this.planAdress,
+      address: this.planAddress,
       date: new Date(),
       editing: false
     });
@@ -75,20 +59,20 @@ export class PlanListComponent implements OnInit {
     this.planTitle = '';
     this.planDescription = '';
     this.planPlaceName = '';
-    this.planAdress = '';
+    this.planAddress = '';
   }
 
   deletePlan(id) {
-    this.todos = this.todos.filter(todo => todo.id !== id);
+    this.plans = this.plans.filter(plan => plan.id !== id);
     this.flashMessages.show('Your Datas are Deleted', {cssClass: 'alert-danger'});
   }
 
-  editPlan(todo: Plan) {
-    todo.editing = true;
+  editPlan(plan: Plan) {
+    plan.editing = true;
   }
 
-  doneEdit(todo: Plan) {
-    todo.editing = false;
+  doneEdit(plan: Plan) {
+    plan.editing = false;
     this.flashMessages.show('Your Datas are Updated', {cssClass: 'alert-warning'});
   }
 
