@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlanListComponent } from './components/plan-list/plan-list.component';
 import {FormsModule} from '@angular/forms';
+import {AutofocusFixModule} from 'ngx-autofocus-fix';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {FormsModule} from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AutofocusFixModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

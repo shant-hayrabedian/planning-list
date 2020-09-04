@@ -26,7 +26,6 @@
 }
 
 .todo-item-left {
-display: flex;
   align-items: center;
 }
 
@@ -90,4 +89,7 @@ button {
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+.margining {
+  margin-left: 15px;
 }

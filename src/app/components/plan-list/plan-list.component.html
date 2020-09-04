@@ -1,18 +1,47 @@
-<img class="logo" width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<img class="logo" width="300" alt="Angular Logo"
+     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 <br>
-<input type="text" class="form-control" placeholder="What needs to be done" [(ngModel)]="todoTitle" ><br>
-<button class="btn btn-primary" (click)="addPlan()">Add</button>
-
-<div class="todo-item" *ngFor="let todo of todos">
+<input type="text" class="form-control" placeholder="Title" [(ngModel)]="planTitle"><br>
+<input type="text" class="form-control" placeholder="Description" [(ngModel)]="planDescription"><br>
+<input type="text" class="form-control" placeholder="Place Name" [(ngModel)]="planPlaceName"><br>
+<input type="text" class="form-control" placeholder="Adress" [(ngModel)]="planAdress"><br>
+<label>Status Is Active:
+<input type="checkbox" value="Active" placeholder="Plan Status" [(ngModel)]="planStatus"></label><br>
+<button class="btn btn-outline-primary" (click)="addPlan()">Add</button><br><br>
+<div class="todo-item border" *ngFor="let todo of todos">
   <div class="todo-item-left">
     <input type="checkbox">
-    <div class="todo-item-label">
-      <h6>Title: <small>{{todo.title}}</small></h6>
-      <br>
-      <h6>Description: <small>{{todo.description}}</small> </h6><br>
+    <div *ngIf="!todo.editing; else editingTodo" class="todo-item-label" (dblclick)="editPlan(todo)">
+      <h6>Title: <small>{{todo.title}}</small></h6><br>
+      <h6>Description: <small>{{todo.description}}</small></h6><br>
+      <h6>Place Name: <small>{{todo.placeName}}</small></h6><br>
+      <h6>Adress: <small>{{todo.adress}}</small></h6><br>
+      <h6>Date: <small>{{todo.date}}</small></h6><br>
+      <h6>Status: <small>{{todo.status}}</small></h6><br>
     </div>
+    <ng-template #editingTodo>
+      <label class="margining">Title</label>
+      <input type="text" class="form-control margining" [(ngModel)]="todo.title"
+             (keyup.enter)="doneEdit(todo)" autofocus><br>
+      <label class="margining">Description</label>
+      <input type="text" class="form-control margining" [(ngModel)]="todo.description"
+             (keyup.enter)="doneEdit(todo)" autofocus>
+      <label class="margining">Place Name</label>
+      <input type="text" class="form-control margining" [(ngModel)]="todo.placeName"
+             (keyup.enter)="doneEdit(todo)" autofocus><br>
+      <label class="margining">Adress</label>
+      <input type="text" class="form-control margining" [(ngModel)]="todo.adress"
+             (keyup.enter)="doneEdit(todo)" autofocus><br>
+      <label class="margining">Date</label>
+      <input type="text" class="form-control margining" [(ngModel)]="todo.date"
+             (keyup.enter)="doneEdit(todo)" autofocus><br>
+      <label class="margining">Status</label>
+      <input type="text" class="form-control margining" [(ngModel)]="todo.status"
+             (keyup.enter)="doneEdit(todo)" autofocus><br>
+    </ng-template>
   </div>
   <div class="remove-item">
+    <button class="btn btn-outline-danger" (click)="deletePlan(todo.id)">Delete</button>
     <br>
   </div>
 </div>

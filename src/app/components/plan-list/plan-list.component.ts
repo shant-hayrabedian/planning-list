@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Plan} from '../../models/plan';
 
 @Component({
   selector: 'app-plan-list',
@@ -6,54 +7,80 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./plan-list.component.css']
 })
 export class PlanListComponent implements OnInit {
-  todos = [];
-  todoTitle;
+  todos: Plan[];
+  planTitle;
+  planDescription;
+  planStatus;
+  planPlaceName;
+  planAdress;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.todoTitle = '';
+    this.planTitle = '';
     this.todos = [
       {
         id: 1,
-        title: 'Finish Angular Screencast',
-        description: false,
+        title: 'Wine',
+        description: 'The Best Wine In Yerevan',
         status: false,
         date: new Date(),
-        placeName: 'Yerevan',
-        adress: 'Kentron'
+        placeName: 'Invino Cafe',
+        adress: 'Saryan Street',
+        editing: false
       },
-      {
-        id: 2,
-        title: 'Take over world',
-        description: 'Here is your description',
-        status: false,
-        date: new Date(),
-        placeName: 'Yerevan',
-        adress: 'Kentron'
-      },
-      {
-        id: 3,
-        title: 'One more thing',
-        description: false,
-        status: false,
-        date: new Date(),
-        placeName: 'Yerevan',
-        adress: 'Kentron'
-      },
+      // {
+      //   id: 2,
+      //   title: 'Take over world',
+      //   description: 'Here is your description',
+      //   status: false,
+      //   date: new Date(),
+      //   placeName: 'Yerevan',
+      //   adress: 'Kentron',
+      //   editing: false
+      // },
+      // {
+      //   id: 3,
+      //   title: 'One more thing',
+      //   description: '',
+      //   status: false,
+      //   date: new Date(),
+      //   placeName: 'Yerevan',
+      //   adress: 'Kentron',
+      //   editing: false
+      // },
     ];
   }
 
   addPlan() {
-    if (this.todoTitle.trim().length === 0) {
+    if (this.planTitle.trim().length  && this.planDescription.trim().length
+      && this.planPlaceName.trim().length  && this.planAdress.trim().length === 0) {
       return;
     }
 
     this.todos.push({
-      id: 4,
-      title: this.todoTitle
+      id: 2,
+      title: this.planTitle,
+      description: this.planDescription,
+      status: this.planStatus,
+      placeName: this.planPlaceName,
+      adress: this.planAdress,
+      date: new Date(),
+      editing: false
     });
-    this.todoTitle = '';
+    this.planTitle = '';
+  }
+
+  deletePlan(id) {
+    this.todos = this.todos.filter(todo => todo.id !== id);
+  }
+
+  editPlan(todo: Plan) {
+    todo.editing = true;
+  }
+
+  doneEdit(todo: Plan) {
+    todo.editing = false;
   }
 
 }
