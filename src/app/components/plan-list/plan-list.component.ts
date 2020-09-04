@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Plan} from '../../models/plan';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-plan-list',
@@ -14,7 +15,7 @@ export class PlanListComponent implements OnInit {
   planPlaceName;
   planAdress;
 
-  constructor() { }
+  constructor(private flashMessages: FlashMessagesService) { }
 
   ngOnInit(): void {
     this.planTitle = '';
@@ -68,11 +69,17 @@ export class PlanListComponent implements OnInit {
       date: new Date(),
       editing: false
     });
+
+    this.flashMessages.show('Congratulations!! Your Datas are Added', {cssClass: 'alert-primary'});
     this.planTitle = '';
+    this.planDescription = '';
+    this.planPlaceName = '';
+    this.planAdress = '';
   }
 
   deletePlan(id) {
     this.todos = this.todos.filter(todo => todo.id !== id);
+    this.flashMessages.show('Your Datas are Deleted', {cssClass: 'alert-danger'});
   }
 
   editPlan(todo: Plan) {
@@ -81,6 +88,7 @@ export class PlanListComponent implements OnInit {
 
   doneEdit(todo: Plan) {
     todo.editing = false;
+    this.flashMessages.show('Your Datas are Updated', {cssClass: 'alert-warning'});
   }
 
 }

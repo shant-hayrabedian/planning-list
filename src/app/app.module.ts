@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { PlanListComponent } from './components/plan-list/plan-list.component';
 import {FormsModule} from '@angular/forms';
 import {AutofocusFixModule} from 'ngx-autofocus-fix';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {AutofocusFixModule} from 'ngx-autofocus-fix';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    AutofocusFixModule.forRoot()
+    AutofocusFixModule.forRoot(),
+    FlashMessagesModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

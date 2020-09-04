@@ -20,6 +20,8 @@
     "@angular/platform-browser-dynamic": "~9.1.0",
     "@angular/router": "~9.1.0",
     "@arjunatlast/jsds": "^2.0.4",
+    "angular-flash-alert": "^2.5.0",
+    "angular2-flash-messages": "^3.0.1",
     "bootstrap": "^4.5.2",
     "ngx-autofocus-fix": "^1.0.4",
     "rxjs": "~6.5.4",
