@@ -1,0 +1,45 @@
+<div class="container">
+  <br>
+<h2 class="d-flex justify-content-center">Please Register</h2>
+<form [formGroup]="registerForms" (ngSubmit)="register()">
+  <div class="form-group">
+    <label>Email address:</label>
+    <input type="email" class="form-control" placeholder="Put Your Email" required formControlName="email"
+           [(ngModel)]="user.email">
+
+  <!-- Email Validators -->
+  <div *ngIf="submitted && f.email.invalid" class="form-error">
+    <p *ngIf="f.email.errors.required" class="alert alert-danger">
+      Email is required!
+    </p>
+    <p *ngIf="f.email.errors.minlength" class="alert alert-danger">
+      Email should be more than 6
+    </p>
+    <p *ngIf="f.email.errors.maxlength" class="alert alert-danger">
+      Email should be less then 20
+    </p>
+  </div>
+  </div>
+  <br>
+  <div class="form-group">
+    <label>Password:</label>
+    <input type="password" placeholder="Put Your Password" class="form-control" required formControlName="password"
+           [(ngModel)]="user.password">
+
+  <!-- Password Validators -->
+  <div *ngIf="submitted && f.password.invalid" class="form-error">
+    <p *ngIf="f.password.errors.required" class="alert alert-danger">
+      Password is required!
+    </p>
+    <p *ngIf="f.password.errors.minlength" class="alert alert-danger">
+      Password should be more than 6
+    </p>
+    <p *ngIf="f.password.errors.maxlength" class="alert alert-danger">
+      Password should be less then 10
+    </p>
+  </div>
+  </div>
+  <br>
+  <input type="submit" value="Register" class="btn btn-primary">
+</form>
+</div>
