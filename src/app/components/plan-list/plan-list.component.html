@@ -1,4 +1,5 @@
-<br>
+<div class="container">
+  <h1 class="d-flex justify-content-center">Welcome To Planning List System Page</h1>
 <div class="row">
   <div class="offset-lg-9">
   <input type="search" class="form-control form-control-sm searchInp" placeholder="Search..." [(ngModel)]="searchTerm">
@@ -17,6 +18,9 @@
 <button class="btn btn-outline-primary" (click)="addPlan()">Add</button><br><br>
 <div class="todo-item border" *ngFor="let plan of plans | filter: searchTerm">
   <div class="todo-item-left">
+    <div class="alert alert-warning">
+      <h4>Enter Double Click to Update & Edit Your Data</h4>
+    </div>
     <div *ngIf="!plan.editing; else editingTodo" class="todo-item-label" (dblclick)="editPlan(plan)">
       <h6>Title: <small>{{plan.title}}</small></h6><br>
       <h6>Description: <small>{{plan.description}}</small></h6><br>
@@ -28,26 +32,29 @@
     <ng-template #editingTodo>
       <label class="margining">Title</label>
       <input type="text" class="form-control margining" [(ngModel)]="plan.title"
-             (keyup.enter)="doneEdit(plan)" autofocus><br>
+             (keyup.enter)="doneEdit(plan)" ><br>
       <label class="margining">Description</label>
       <input type="text" class="form-control margining" [(ngModel)]="plan.description"
-             (keyup.enter)="doneEdit(plan)" autofocus>
+             (keyup.enter)="doneEdit(plan)" >
       <label class="margining">Place Name</label>
       <input type="text" class="form-control margining" [(ngModel)]="plan.placeName"
-             (keyup.enter)="doneEdit(plan)" autofocus><br>
+             (keyup.enter)="doneEdit(plan)" ><br>
       <label class="margining">Address</label>
       <input type="text" class="form-control margining" [(ngModel)]="plan.address"
-             (keyup.enter)="doneEdit(plan)" autofocus><br>
+             (keyup.enter)="doneEdit(plan)" ><br>
       <label class="margining">Date</label>
       <input type="text" class="form-control margining" [(ngModel)]="plan.date"
-             (keyup.enter)="doneEdit(plan)" autofocus><br>
+             (keyup.enter)="doneEdit(plan)"><br>
       <label class="margining">Status</label>
       <input type="text" class="form-control margining" [(ngModel)]="plan.status"
-             (keyup.enter)="doneEdit(plan)" autofocus><br>
+             (keyup.enter)="doneEdit(plan)"><br>
+      <div class="alert alert-secondary">
+        <h4>If You Finished Your Editing Please Click Enter To Save Your Data</h4></div>
     </ng-template>
   </div>
   <div class="remove-item">
     <button class="btn btn-outline-danger" (click)="deletePlan(plan.id)">Delete</button>
     <br>
   </div>
+</div>
 </div>
