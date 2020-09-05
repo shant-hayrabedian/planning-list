@@ -29,7 +29,7 @@ export class RegisterPageComponent implements OnInit {
   register() {
     if ( this.user.email !== '' && this.user.password !== '') {
       this.submitted = false;
-      this.router.navigate(['/plan-list']);
+      return this.router.navigate(['/plan-list']);
     } else {
       this.submitted = true;
     }
